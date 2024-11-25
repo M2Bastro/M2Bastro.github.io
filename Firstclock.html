@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		.universe{
+			width: 150px;
+			height: 100px;
+			margin: 10px;
+			background-image:url(https://media.licdn.com/dms/image/D5612AQFuGgRcQl3Jsg/article-cover_image-shrink_720_1280/0/1697222400720?e=2147483647&v=beta&t=93PUpuVGn_2LbGCUi6kq8s2i3FmHwg67EkWouDKJAcU);
+			display: inline-block;
+			background-size: 175px;
+			color: white;
+
+		}
+
+	</style>
+	<title></title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		
+
+		count=0
+		function makeUniverse(){
+			count = count + 1
+			let shape = document.createElement("div")
+			document.body.appendChild(shape)
+			shape.classList.add("universe")
+			shape.innerText=count
+		}
+
+		setInterval(makeUniverse, 200)
+
+
+	</script>
+
+</body>
+</html>
