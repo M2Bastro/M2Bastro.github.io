@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+document.addEventListener("click", function(event){
+		console.log(event.clientX, event.clientY)
+
+	let r=event.clientX/5.64
+	let g=0
+	let b=event.clientY/3.04
+	document.body.style.backgroundColor="rgb("+r+","+g+","+b+")"
+})
+</script>
+</body>
+</html>
