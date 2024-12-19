@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		.universe{
+			width: 10px;
+			height: 10px;
+			margin: 10px;
+			display: inline-block;
+			background-size: 175px;
+			color: white;
+			background-color: grey;
+			
+		}
+
+	</style>
+	<title></title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		
+
+		count=0
+		function makeUniverse(){
+			count = count + 1
+			let shape = document.createElement("div")
+			document.body.appendChild(shape)
+			shape.classList.add("universe")
+			shape.innerText=count
+			shape.innerText.textSize=50
+		}
+
+		setInterval(makeUniverse, 1000)
+
+
+	</script>
+
+</body>
+</html>
