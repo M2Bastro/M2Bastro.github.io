@@ -23,6 +23,8 @@
 			position: absolute;
 			top: 390px;
 			left: 600px;
+			text-align: center;
+			line-height: 400px;
 		}
 	</style>
 	
@@ -30,11 +32,16 @@
 <body>
 	<audio id="scream"  src="scream.m4a"></audio>
 	<div id="background"></div>
-	<div id="tombstone"></div>
+	<div id="tombstone">R.I.P.</div>
 
 
 
 	<script type="text/javascript">
+		alert("Warning: Do Not Touch!!!")
+		tombstone.style.fontSize = "50px"
+
+
+
 		let warning = 0
 		
 		tombstone.addEventListener("click",
