@@ -7,16 +7,19 @@
 	<style type="text/css">
 		.heart{
 			width: 100px;
-			height: 1000px;
+			height: 100px;
 			display: inline-block;
 			background-image: url(heart.jpg);
 			background-size: contain;
-			margin: 0px;
+			margin: 10px;
 			position:relative;
-			left: 10px;
+			left: 50px;
 			text-align: center;
-		}
+			line-height: 75px;
+			transition:1s;
 
+		}
+		
 
 		body{
 			background-color: hotpink;
@@ -27,17 +30,77 @@
 
 
 	<script type="text/javascript">
-	function makeHearts(x){
+
+		let click = 0;
+		let timer = 0;
+
+
+
+	function makeHearts(){
 		let heart = document.createElement("div")
 		document.body.appendChild(heart)
 		heart.classList.add("heart")
 		heart.innerText = "Click Me!"
 
+		heart.addEventListener("click", function heartswitch(){
+			click=click+1
+			let hearts = Array.from(document.getElementsByClassName("heart"))
+			hearts.forEach(function(element){
+			// element.style.zIndex="1"
+			element.style.position="absolute"
+			element.style.transition="1s"
+			element.style.left=Math.random()*1000+"px" 
+			element.style.top=Math.random()*1000+"px"
+
+			if (click>2){
+				element.style.left="525px" 
+			element.style.top="175px"
+			element.style.width = "400px"
+			element.style.height = "400px"
+			element.style.lineHeight = "300px"
+			element.style.color = "hotpink"
+			element.style.fontSize = "30px"
+			element.innerText = "Happy Valentine's Day!"
+			setInterval(makeTime, 100)
+				// console.log(timer)
+				
+			
+			}
+
+			function makeTime(){
+			timer = timer + 1
+			console.log(timer)
+			if(timer > 700){
+				element.style.position="relative"
+					element.style.transition="1s"
+					element.style.left="50px" 
+				element.style.top="10px"
+				element.style.width = "100px"
+				element.style.height = "100px"
+				element.style.color = "hotpink"
+			element.style.fontSize = "8px"
+			element.style.lineHeight = "80px"
+			element.innerText = "Happy Valentine's Day!"
+				//setInterval(heartswitch, 10);
+
+				}
+		}
+
+
+
+			})
+		})
+
+
 	}	
 
-		for(let i = 0 ; i <14; i = i+1){
-			makeHearts(i);
+		for(let i = 0 ; i <66; i = i+1){
+			makeHearts();
 		}	
+
+
+
+
 
 
 
