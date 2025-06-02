@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <style type="text/css">
+
+	 	#Outerrim{
+	 		position: absolute;
+	 		top:100px;
+	 		left: 425px;
+	 		width:600px;
+	 		height:600px;
+	 		background-color: black;
+	 		border-top-left-radius: 50%;
+	 		border-top-right-radius: 50%;
+	 		border-bottom-left-radius: 50%;
+	 		border-bottom-right-radius: 50%;
+	 	}
+	 	#innerrim{
+	 		transition:4s;
+	 		position: relative;
+	 		top:200px;
+	 		left: 525px;
+	 		width:400px;
+	 		height:400px;
+	 		background-color: gold;
+	 		border-top-left-radius: 50%;
+	 		border-top-right-radius: 50%;
+	 		border-bottom-left-radius: 50%;
+	 		border-bottom-right-radius: 50%;
+	 		color: white;
+	 		text-align: center;
+	 		line-height: 350px;
+	 	}
+	 	body{
+	 		background-color: purple;
+	 	}
+	 </style>
+	<title></title>
+</head>
+<body>
+	<div id="Outerrim"></div>
+	<div id="innerrim"></div>
+<script type="text/javascript">
+
+	innerrim.innerText="Click to Play"
+	innerrim.style.fontSize = "50px"
+function page (){
+		window.open("songpg2.html")
+		window.close("songguesserproto.html")
+
+	}
+innerrim.addEventListener("click", function(){
+	setTimeout(page,1750);
+	innerrim.style.transform= "rotate(2200deg)";
+	portal.style.opacity="0"
+})
+
+</script>
+
+
+</body>
+</html>

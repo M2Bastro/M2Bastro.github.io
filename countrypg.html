@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: purple;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    #startbutton, #nextbutton {
+      display: inline-block;
+      width: 300px;
+      height: 100px;
+      background-color: darkred;
+      font-size: 40px;
+      line-height: 100px;
+      margin: 20px auto;
+      cursor: pointer;
+    }
+
+    #nextbutton {
+      display: none;
+    }
+
+    #scoreboard, #timer {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      background-color: darkred;
+      font-size: 30px;
+      line-height: 100px;
+      margin: 20px;
+    }
+
+    #playbackground {
+      margin: 40px auto;
+      width: 150px;
+      height: 150px;
+      background-color: darkred;
+      border-radius: 50%;
+      display: none;
+      position: relative;
+    }
+
+    .playline {
+      width: 20px;
+      height: 80px;
+      background-color: black;
+      position: absolute;
+      top: 35px;
+    }
+
+    #playline1 { left: 40px; }
+    #playline2 { right: 40px; }
+
+  </style>
+</head>
+<body>
+
+  <h1 id="h1">Rules:</h1>
+  <h2 id="h2">
+    Once you begin, a song will play for 30 seconds.<br>
+    In those 30 seconds, choose the correct song title (press 1, 2, or 3).<br>
+    Correct answers give 10 points. There are 3 rounds.
+  </h2>
+
+  <div id="startbutton">Start</div>
+  <div id="nextbutton">Next Level</div>
+  <div id="scoreboard">0</div>
+  <div id="timer">30</div>
+
+  <div id="playbackground">
+    <div class="playline" id="playline1"></div>
+    <div class="playline" id="playline2"></div>
+  </div>
+
+  <!-- Audio Elements -->
+  <audio id="Jolene" src="Jolene.mp3"></audio>
+  <audio id="FriendsInLowPlaces" src="FriendsInLowPlaces.mp3"></audio>
+  <audio id="TennesseeWhiskey" src="TennesseeWhiskey.mp3"></audio>
+  <audio id="BeforeHeCheats" src="BeforeHeCheats.mp3"></audio>
+  <audio id="CountryRoads" src="CountryRoads.mp3"></audio>
+  <audio id="TheGambler" src="TheGambler.mp3"></audio>
+  <audio id="NeedYouNow" src="NeedYouNow.mp3"></audio>
+  <audio id="WagonWheel" src="WagonWheel.mp3"></audio>
+  <audio id="ForeverAndEverAmen" src="ForeverAndEverAmen.mp3"></audio>
+  <audio id="BodyLikeABackRoad" src="BodyLikeABackRoad.mp3"></audio>
+  <audio id="DieAHappyMan" src="DieAHappyMan.mp3"></audio>
+  <audio id="LiveLikeYouWere" src="LiveLikeYouWere.mp3"></audio>
+  <audio id="Cruise" src="Cruise.mp3"></audio>
+  <audio id="Fancy" src="Fancy.mp3"></audio>
+  <audio id="SomethingInTheOrange" src="SomethingInTheOrange.mp3"></audio>
+
+  <script>
+    const rounds = [
+      {
+        tracks: ["Jolene", "FriendsInLowPlaces", "TennesseeWhiskey", "BeforeHeCheats", "CountryRoads"],
+        titles: ["Jolene", "Friends In Low Places", "Tennessee Whiskey", "Before He Cheats", "Country Roads"],
+        correctKey: '1'
+      },
+      {
+        tracks: ["TheGambler", "NeedYouNow", "WagonWheel", "ForeverAndEverAmen", "BodyLikeABackRoad"],
+        titles: ["The Gambler", "Need You Now", "Wagon Wheel", "Forever And Ever Amen", "Body Like A Back Road"],
+        correctKey: '3'
+      },
+      {
+        tracks: ["DieAHappyMan", "LiveLikeYouWere", "Cruise", "Fancy", "SomethingInTheOrange"],
+        titles: ["Die A Happy Man", "Live Like You Were", "Cruise", "Fancy", "Something In The Orange"],
+        correctKey: '2'
+      }
+    ];
+
+    let currentRound = 0;
+    let score = 0;
+    let timerInterval;
+    let timeLeft = 30;
+    let currentSong;
+    let songIndex = 0;
+
+    const startBtn = document.getElementById('startbutton');
+    const nextBtn = document.getElementById('nextbutton');
+    const timerDisplay = document.getElementById('timer');
+    const scoreDisplay = document.getElementById('scoreboard');
+    const h1 = document.getElementById('h1');
+    const h2 = document.getElementById('h2');
+    const playVisual = document.getElementById('playbackground');
+
+    function showOptions(round) {
+      const titles = rounds[round].titles;
+      songIndex = Math.floor(Math.random() * titles.length);
+      const correct = titles[songIndex];
+      let options = [correct];
+
+      while (options.length < 3) {
+        const randomOption = titles[Math.floor(Math.random() * titles.length)];
+        if (!options.includes(randomOption)) options.push(randomOption);
+      }
+
+      options = options.sort(() => 0.5 - Math.random());
+
+      h2.innerHTML = `
+        1. ${options[0]}<br><br>
+        2. ${options[1]}<br><br>
+        3. ${options[2]}
+      `;
+
+      // set correctKey based on options
+      rounds[round].correctKey = (options.indexOf(correct) + 1).toString();
+    }
+
+    function startRound(round) {
+      if (round >= rounds.length) {
+        h1.innerText = "Game Over!";
+        h2.innerText = `Final Score: ${score}`;
+        return;
+      }
+
+      h1.innerText = "Guess the Song!";
+      startBtn.style.display = "none";
+      nextBtn.style.display = "none";
+      playVisual.style.display = "block";
+      timeLeft = 30;
+      timerDisplay.innerText = timeLeft;
+      timerDisplay.style.display = "inline-block";
+
+      showOptions(round);
+
+      const audioId = rounds[round].tracks[songIndex];
+      currentSong = document.getElementById(audioId);
+      currentSong.play();
+
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerDisplay.innerText = timeLeft;
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          handleAnswer(null); // timeout
+        }
+      }, 1000);
+    }
+
+    function handleAnswer(key) {
+      clearInterval(timerInterval);
+      currentSong.pause();
+      currentSong.currentTime = 0;
+
+      playVisual.style.display = "none";
+      timerDisplay.style.display = "none";
+
+      const correct = rounds[currentRound].correctKey;
+
+      if (key === correct) {
+        h1.innerText = "Correct!";
+        score += 10;
+      } else if (key === null) {
+        h1.innerText = "Time's up!";
+      } else {
+        h1.innerText = "Wrong Answer!";
+      }
+
+      scoreDisplay.innerText = score;
+      nextBtn.style.display = "inline-block";
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (["1", "2", "3"].includes(event.key) && timerInterval) {
+        handleAnswer(event.key);
+      }
+    });
+
+    startBtn.onclick = () => startRound(currentRound);
+    nextBtn.onclick = () => {
+      currentRound++;
+      startRound(currentRound);
+    };
+  </script>
+</body>
+</html>

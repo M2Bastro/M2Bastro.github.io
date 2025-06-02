@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+	h1{
+ 			 color: white;
+ 			 line-height: 750px}
+
+	 	#Outerrim1{
+	 		position: absolute;
+	 		top:20px;
+	 		left: 150px;
+	 		width:350px;
+	 		height:350px;
+	 		background-color: black;
+	 		border-top-left-radius: 50%;
+	 		border-top-right-radius: 50%;
+	 		border-bottom-left-radius: 50%;
+	 		border-bottom-right-radius: 50%;
+	 	}
+	 	#innerrim1{
+	 		transition: 4s;
+	 		position: absolute;
+	 		top:75px;
+	 		left: 200px;
+	 		width:250px;
+	 		height:250px;
+	 		background-color: gold;
+	 		border-top-left-radius: 50%;
+	 		border-top-right-radius: 50%;
+	 		border-bottom-left-radius: 50%;
+	 		border-bottom-right-radius: 50%;
+	 		color: white;
+	 		text-align: center;
+	 		line-height: 250px;
+	 	}
+	 	#Outerrim2{
+	 		position: absolute;
+	 		top:420px;
+	 		left: 150px;
+	 		width:350px;
+	 		height:350px;
+	 		background-color: black;
+	 		border-top-left-radius: 50%;
+	 		border-top-right-radius: 50%;
+	 		border-bottom-left-radius: 50%;
+	 		border-bottom-right-radius: 50%;
+	 	}
+	 	#innerrim2{
+	 		transition: 4s;
+	 		position: absolute;
+	 		top:465px;
+	 		left: 200px;
+	 		width:250px;
+	 		height:250px;
+	 		background-color: darkred;
+	 		border-top-left-radius: 50%;
+	 		border-top-right-radius: 50%;
+	 		border-bottom-left-radius: 50%;
+	 		border-bottom-right-radius: 50%;
+	 		color: white;
+	 		text-align: center;
+	 		line-height: 250px;
+	 	}
+	 	#Outerrim3{
+	 		position: absolute;
+	 		top:20px;
+	 		left: 900px;
+	 		width:350px;
+	 		height:350px;
+	 		background-color: black;
+	 		border-top-left-radius: 50%;
+	 		border-top-right-radius: 50%;
+	 		border-bottom-left-radius: 50%;
+	 		border-bottom-right-radius: 50%;
+	 	}
+	 	#innerrim3{
+	 		transition: 4s;
+	 		position: absolute;
+	 		top:75px;
+	 		left: 950px;
+	 		width:250px;
+	 		height:250px;
+	 		background-color: skyblue;
+	 		border-top-left-radius: 50%;
+	 		border-top-right-radius: 50%;
+	 		border-bottom-left-radius: 50%;
+	 		border-bottom-right-radius: 50%;
+	 		color: white;
+	 		text-align: center;
+	 		line-height: 250px;
+	 	}
+	 	#Outerrim4{
+	 		position: absolute;
+	 		top:420px;
+	 		left: 900px;
+	 		width:350px;
+	 		height:350px;
+	 		background-color: black;
+	 		border-top-left-radius: 50%;
+	 		border-top-right-radius: 50%;
+	 		border-bottom-left-radius: 50%;
+	 		border-bottom-right-radius: 50%;
+	 	}
+	 	#innerrim4{
+	 		transition: 4s;
+	 		position: absolute;
+	 		top:465px;
+	 		left: 950px;
+	 		width:250px;
+	 		height:250px;
+	 		background-color: seagreen;
+	 		border-top-left-radius: 50%;
+	 		border-top-right-radius: 50%;
+	 		border-bottom-left-radius: 50%;
+	 		border-bottom-right-radius: 50%;
+	 		color: white;
+	 		text-align: center;
+	 		line-height: 250px;
+	 	}
+	 	body{
+	 		background-color: purple;
+	 		color: white;
+	 	}
+	 </style>
+	<title></title>
+</head>
+<body>
+<center><h1>Pick A Genre!</h1></center>
+
+	<div id="Outerrim1"></div>
+	<div id="innerrim1"></div>
+	<div id="Outerrim2"></div>
+	<div id="innerrim2"></div>
+	<div id="Outerrim3"></div>
+	<div id="innerrim3"></div>
+	<div id="Outerrim4"></div>
+	<div id="innerrim4"></div>
+
+	<script type="text/javascript">
+
+	innerrim1.innerText= "Pop"
+	innerrim2.innerText= "Rap/R&B"
+	innerrim3.innerText= "Rock"
+	innerrim4.innerText= "Country"
+	innerrim1.style.fontSize= "30px"
+	innerrim2.style.fontSize= "30px"
+	innerrim3.style.fontSize= "30px"
+	innerrim4.style.fontSize= "30px"
+
+	function rappage (){
+		window.open("rappg.html")
+		window.close("songpg2.html")
+	}
+	function countrypage (){
+		window.open("countrypg.html")
+		window.close("songpg2.html")
+	}
+	function poppage (){
+		window.open("poppg.html")
+		window.close("songpg2.html")
+	}
+	function rockpage (){
+		window.open("rockpg.html")
+		window.close("songpg2.html")
+	}
+
+
+innerrim1.addEventListener("click", function(){
+	setTimeout(poppage,1750);
+	innerrim1.style.transform= "rotate(2200deg)";
+	portal.style.opacity="0"
+})
+innerrim2.addEventListener("click", function(){
+	setTimeout(rappage,1750);
+	innerrim2.style.transform= "rotate(2200deg)";
+	portal.style.opacity="0"
+})
+innerrim3.addEventListener("click", function(){
+	setTimeout(rockpage,1750);
+	innerrim3.style.transform= "rotate(2200deg)";
+	portal.style.opacity="0"
+})
+innerrim4.addEventListener("click", function(){
+	setTimeout(countrypage,1750);
+	innerrim4.style.transform= "rotate(2200deg)";
+	portal.style.opacity="0"
+})
+	</script>
+
+</body>
+</html>
